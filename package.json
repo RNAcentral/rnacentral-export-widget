@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Widget to explore the RNAcentral export microservice",
   "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
   "keywords": [
     "RNA",
     "bioinformatics"
