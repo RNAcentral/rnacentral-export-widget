@@ -1,0 +1,34 @@
+{
+  "name": "rnacentral-export-widget",
+  "version": "1.0.0",
+  "description": "Widget to explore the RNAcentral export microservice",
+  "main": "index.js",
+  "keywords": [
+    "RNA",
+    "bioinformatics"
+  ],
+  "contributors": [
+    {
+      "name": "Blake Sweeney",
+      "email": "bsweeney@ebi.ac.uk"
+    },
+    {
+      "name": "Carlos E. Ribas",
+      "email": "cribas@ebi.ac.uk"
+    }
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RNAcentral/rnacentral-export-widget/issues"
+  },
+  "homepage": "https://github.com/RNAcentral/rnacentral-export-widget#readme",
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "babel-loader": "^9.1.3",
+    "dotenv": "^16.4.5",
+    "dotenv-webpack": "^8.1.0",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
