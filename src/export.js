@@ -68,9 +68,13 @@ class ExportWidget extends HTMLElement {
                     data_type: this.dataType
                 })
             });
-            const data = await response.json();
-            this.jobId = data.task_id;
-            setTimeout(() => this.checkStatus(), 1000);
+            if (response.status === 200) {
+                const data = await response.json();
+                this.jobId = data.task_id;
+                setTimeout(() => this.checkStatus(), 1000);
+            } else {
+                this.updateStatus('Error starting job: ' + response.statusText);
+            }
         } catch (error) {
             this.updateStatus('Error starting job');
             console.error('Error starting job:', error);
