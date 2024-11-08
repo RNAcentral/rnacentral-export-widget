@@ -2,11 +2,12 @@ class ExportWidget extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.apiUrl = this.getAttribute('api-url');
+        this.apiUrl = 'https://www.ebi.ac.uk/ebisearch/ws/rest/rnacentral';
+        this.params = '&size=1000&sort=id&format=json';
+        this.query = this.getAttribute('query');
         this.dataType = this.getAttribute('data-type');
         this.jobId = null;
         this.status = 'pending';
-        this.query = this.extractQueryParam();
         this.progress = 0;
         this.apiDomain = process.env.API_DOMAIN;
         this.shadowRoot.innerHTML = `
@@ -58,13 +59,13 @@ class ExportWidget extends HTMLElement {
 
     async startJob() {
         try {
-            const response = await fetch(`${this.apiDomain}/fetch-data/`, {
+            const response = await fetch(`${this.apiDomain}/submit/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    api_url: this.apiUrl,
+                    api_url: this.apiUrl + '?query=(' + this.query + ')' + this.params,
                     data_type: this.dataType
                 })
             });
@@ -140,11 +141,6 @@ class ExportWidget extends HTMLElement {
         const progressBarFill = this.shadowRoot.getElementById('export-progress-bar-fill');
         progressBarFill.style.width = `${this.progress}%`;
         progressBarFill.textContent = `${this.progress}%`;
-    }
-
-    extractQueryParam() {
-        const urlObj = new URL(this.apiUrl);
-        return urlObj.searchParams.get('query');
     }
 }
 
